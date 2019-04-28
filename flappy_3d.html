@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>flappy_3d.hmtl</title>
+  </head>
+  <body>
+    <div align="center"><font size="+3">3D Flappy Bird Neuro Evolution<br>
+        <br>
+      </font>
+      <div align="left"><br>
+      </div>
+    </div>
+    This was a lot of fun.&nbsp; After making several NeuroEvolution
+    'games' I thought I pretty much knew all there was to know. But this
+    taught me a few new things, and not just about the 3D programming,
+    but about how the Neural Network agent behaves when adding in the
+    3rd dimension.<br>
+    <br>
+    I have 3 versions (well, 4 if you include the human playable
+    version).<br>
+    &nbsp;&nbsp;&nbsp; 1)&nbsp; Neural Network is coded without using a
+    library as a set of matrices and a lot of linear algebra to
+    calculate the outputs. <br>
+    &nbsp;&nbsp;&nbsp; 2)&nbsp; Is like #1, but using the TensorFlow
+    library to create Tensors and their built in methods to calculate
+    the output (but not explicitly creating a NeuralNetwork Model).<br>
+    &nbsp;&nbsp;&nbsp; 3)&nbsp; Uses TensorFlow.js' Layers API to create
+    a model and return the output.<br>
+    <br>
+    links to all the code are below:<br>
+    <i>(note: The code linked below is all hosted on P5JS's web
+      editor.&nbsp; P5JS is an excellent javascript library that makes
+      developing anything in javascript much simpler.&nbsp; If you are
+      not aware of Coding Train, do yourself a favor and watch Dan
+      Shiffman's Coding Train on youtube.&nbsp; Also his book, Nature of
+      Code, is an amazing way to learn how to program.)</i><br>
+    link: <a href="https://youtu.be/lu5ul7z4icQ">Coding Train on
+      YouTube.</a><br>
+    <br>
+    <table width="882" height="445" cellspacing="2" cellpadding="2"
+      border="1">
+      <tbody>
+        <tr>
+          <td valign="top" align="center"><b><font size="+2">Plain code<br>
+              </font></b></td>
+          <td valign="top" align="center"><b><font size="+2">Using
+                Tensors</font></b><br>
+          </td>
+          <td valign="top" align="center"><b><font size="+2">TensorFlow
+                Model</font></b><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top"><img src="plain.PNG" alt="plain" width="421"
+              height="370"><br>
+          </td>
+          <td valign="top"><img src="tensors.PNG" alt="tensors"
+              width="486" height="372"><br>
+          </td>
+          <td valign="top"><img src="model.png" alt="model" width="575"
+              height="370"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" align="center"><a
+              href="https://editor.p5js.org/djuliette/sketches/v-_4OpV6l">Run
+              and Edit Code</a><br>
+          </td>
+          <td valign="top" align="center"><a
+              href="https://editor.p5js.org/djuliette/sketches/yJLsiHfty">Run
+              and Edit Code</a><br>
+          </td>
+          <td valign="top" align="center"><a
+              href="https://editor.p5js.org/djuliette/sketches/aGEe50IFd">Run
+              and Edit Code</a><br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+    <br>
+    <b><font size="+1">Analysis:</font></b><br>
+    <i>Note: </i><i>(below when I say 'Model code' I mean using the
+      Layers API to create a model, and when I say 'Tensor code' I mean
+      create Tensors for the weights and use the Tensor methods to
+      perform the linear algebra, but not explicitly creating a Model).</i><br>
+    <br>
+    Oddly enough, this kind of flew in the face of what I learned
+    previously; that the TensorFlow model had too much overhead to run
+    effectively in the browser.&nbsp; Using the WEBGL renderer seems to
+    make a huge difference in performance.&nbsp; However, I still have
+    to use a restricted population size in the code with the TensorFlow
+    model.&nbsp; The TF model can handle a pop size of around 300 and
+    still be smooth and fast enough to run.&nbsp; With that population
+    size it can 'solve' the game in around 25-30 generations.<br>
+    <br>
+    But in the plain code, with no TF, a pop size of 500-750 is easily
+    usable, and even 900 runs acceptably.&nbsp; However I found that the
+    code that doesn't use any of the TF library functions performs more
+    erratically.&nbsp; What I mean by that is that the program will
+    'solve' the game sometimes in less than 10 generations and other
+    times takes around 40 generation.<br>
+    <br>
+    The Model code and the Tensor code generally 'solve' the game in
+    reliably around 25 generations.<br>
+    <br>
+    <font size="+1"><b>How did this project differ from the normal 2D
+        ones (car track, dino game, 2d flappy bird, etc)?<br>
+        <br>
+      </b></font>The one Big Takeaway I got from this project is that
+    this type of Neural Network does not like negative numbers as
+    inputs.<br>
+    <br>
+    In this case, the agent's inputs are 1) it's delta X distance to the
+    target, 2) the delta Y distance and 3) the delta Z.<br>
+    <i>note: (I never use the actual position of the agent as an
+      input.&nbsp; This leads the network to 'memorize' the layout of
+      the environment instead of reacting to the situations in the
+      environment).<br>
+      <br>
+    </i>I thought that this would suffice, that the network would be
+    able to figure out that a negative delta X would mean it has to go
+    right to get the delta to near 0, and a positive delta X would mean
+    go left until the delta was near 0.&nbsp; But this didn't
+    work.&nbsp; It was never able to figure out how to go right, it
+    didn't like the negative input.<br>
+    <br>
+    So I created 2 new boolean inputs, one would be on if the delta X
+    was positive and therefore the agent should move right, and the
+    other would be on if the delta X was negative.<br>
+    I then made the actual delta X input to always be positive by using
+    the absolute value of the input.<br>
+    Once I did that the program solved the game in 25 generations and
+    would reliably solve it every attempt.<br>
+    <font size="+1"><b></b></font>
+  </body>
+</html>
