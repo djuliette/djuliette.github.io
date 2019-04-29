@@ -112,6 +112,21 @@
     The Model code and the Tensor code generally 'solve' the game in
     reliably around 25 generations.<br>
     <br>
+    This type of Neural Network in general can suffer from memory
+    loss.&nbsp; That is, if the environment changes in such a way that
+    the top performer suddenly dies off, all of it's learned traits can
+    be lost.&nbsp; An agent could have nearly solved an environment, but
+    if a small change causes it to die off early, the process of natural
+    selection can bypass that top performer, and all it's desirable
+    behavioral traits can be lost, basically resetting the whole
+    scenario back to the beginning.<br>
+    A way I used to combat this memory loss is to save the top performer
+    from each generation for 5 generations (easily configurable to save
+    X generations).&nbsp; That is, the top performer of a generation
+    will be ran for at least the next 4 generations before being
+    lost.&nbsp; Therefore a fluke loss in one or two generations will
+    not reset the whole scenario back to square one.<br>
+    <br>
     <font size="+1"><b>How did this project differ from the normal 2D
         ones (car track, dino game, 2d flappy bird, etc)?<br>
         <br>
