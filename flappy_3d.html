@@ -93,14 +93,15 @@
       create Tensors for the weights and use the Tensor methods to
       perform the linear algebra, but not explicitly creating a Model).</i><br>
     <br>
-    Oddly enough, this kind of flew in the face of what I learned
-    previously; that the TensorFlow model had too much overhead to run
-    effectively in the browser.&nbsp; Using the WEBGL renderer seems to
-    make a huge difference in performance.&nbsp; However, I still have
-    to use a restricted population size in the code with the TensorFlow
-    model.&nbsp; The TF model can handle a pop size of around 300 and
-    still be smooth and fast enough to run.&nbsp; With that population
-    size it can 'solve' the game in around 25-30 generations.<br>
+    <b><font size="+1">Performance between programs:<br>
+      </font></b>Oddly enough, this kind of flew in the face of what I
+    learned previously; that the TensorFlow model had too much overhead
+    to run effectively in the browser.&nbsp; Using the WEBGL renderer
+    seems to make a huge difference in performance.&nbsp; However, I
+    still have to use a restricted population size in the code with the
+    TensorFlow model.&nbsp; The TF model can handle a pop size of around
+    300 and still be smooth and fast enough to run.&nbsp; With that
+    population size it can 'solve' the game in around 25-30 generations.<br>
     <br>
     But in the plain code, with no TF, a pop size of 500-750 is easily
     usable, and even 900 runs acceptably.&nbsp; However I found that the
@@ -112,6 +113,7 @@
     The Model code and the Tensor code generally 'solve' the game in
     reliably around 25 generations.<br>
     <br>
+    <b><font size="+1">Combating Memory Loss:</font></b><br>
     This type of Neural Network in general can suffer from memory
     loss.&nbsp; That is, if the environment changes in such a way that
     the top performer suddenly dies off, all of it's learned traits can
@@ -126,6 +128,7 @@
     will be ran for at least the next 4 generations before being
     lost.&nbsp; Therefore a fluke loss in one or two generations will
     not reset the whole scenario back to square one.<br>
+    <br>
     <br>
     <font size="+1"><b>How did this project differ from the normal 2D
         ones (car track, dino game, 2d flappy bird, etc)?<br>
