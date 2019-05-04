@@ -2,16 +2,30 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.sound.min.js"></script>
+    <meta charset="utf-8">
     <title>Autonomous</title>
   </head>
   <body>
+    <script src="Track.js"></script>
+    <script src="Population.js"></script>
+    <script src="Player.js"></script>
+    <script src="nn.js"></script>
+    <script src="matrix.js"></script>
+    <script src="LineSeg.js"></script>
+    <script src="Gates.js"></script>
+    <script src="sketch.js"></script>
     <div align="center"><font size="+3">Autonomous Vehicle Project <br>
       </font>
       <div align="left"><a href="http://djuliette.github.io">Back to
           main page</a><br>
       </div>
       <font size="+3"> </font>
-      <div align="left"><br>
+      <div align="left"><b><font size="+3"><br>
+            I)&nbsp; Intro:</font></b><br>
+        <br>
         OK, Autonomous Vehicle is a bit of a stretch, it's a rectangle
         going around a track.&nbsp; But it has sensors, a bit of
         inertia, and it does not know it's location at any point.&nbsp;
@@ -26,16 +40,60 @@
         are 8 sensors, 1 every 45 degrees around the agent.<br>
         <br>
         Here's what each agent's inputs are like:<br>
+        <a href="https://editor.p5js.org/djuliette/present/zcBRXpL4Y"><i><b>(open
+
+              in a new tab)</b></i></a><br>
         <div align="center"> <br>
           <iframe
             src="https://editor.p5js.org/djuliette/embed/zcBRXpL4Y"
             width="600" height="600"></iframe><br>
           <br>
-          The first goal is to solve the environment, to completely
-          circuit the track.<br>
-          The second goal is to save the weights of the neural network
-          and load them into an agent on another track and see how it
-          performs.<br>
+          <br>
+          <div align="left"><b><font size="+3">II) Model Training:</font></b><br>
+          </div>
+          <br>
+          <div align="left"> &nbsp;&nbsp; &nbsp; <font size="+2"><b>a)</b></font>&nbsp;&nbsp;
+
+            The first goal is to solve the environment, to completely
+            circuit the track.<br>
+            &nbsp;&nbsp;<b><font size="+2">&nbsp; b) </font></b>The
+            second goal is to save the weights of the neural network and
+            load them into an agent on another track and see how it
+            performs.<br>
+            <br>
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <b><font
+                size="+2">Demonstration:<br>
+              </font></b>
+            <div align="left"><font size="+2"><font size="-2">&nbsp;&nbsp;&nbsp;
+
+                  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font
+                    size="-1">Open Demo in new tab</font></font></font><br>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <b><font size="+2"><a href="./track_js/index.html">test link</a><br>
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; </font></b><font
+              size="-1">open demo in new tab</font><b><font size="+2"><br>
+                <br>
+              </font></b><br>
+            So First if you hit the <b>Space Bar</b> it will stop
+            drawing all sensors so it can run faster.<br>
+            Now you can see the agents going around the track.<br>
+            <br>
+            If you are patient enough they will complete the track
+            usually <b>around 50 generations.&nbsp; </b>They can solve
+            the environment sooner if by random mutation they get lucky.<br>
+            Or they can even diverge leading to a never ending cycle.<br>
+            <br>
+            Or you can hit the <u><i><font size="+3"><b>L</b></font></i></u>
+            key which will load a pre-trained model and it will
+            instantly be able to solve the track.<br>
+            As soon as I have time I'll create a new track so the
+            pre-trained model can solve it as well with no additional
+            training.<br>
+            <br>
+          </div>
           <br>
           video<br>
           <br>
