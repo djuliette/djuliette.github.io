@@ -25,68 +25,76 @@
         the distance from the agent to the nearest obstacle.&nbsp; There
         are 8 sensors, 1 every 45 degrees around the agent.<br>
         <br>
-        The first goal is to solve the environment, to completely
-        circuit the track.<br>
-        The second goal is to save the weights of the neural network and
-        load them into an agent on another track and see how it
-        performs.<br>
-        <br>
-        video<br>
-        video 1 of agent completing track one<br>
-        <br>
-        video 2 of agent loading into new track and completing it
-        immediately<br>
-        <br>
-        <b><font size="+2"><br>
-            Analysis:</font></b><br>
-        <br>
-        I initially programmed this in Java using the Processing
-        library.&nbsp; I then made a Javascript version to be able to be
-        run in a browser.<br>
-        Saving/loading the neural network weights in java was simple,
-        but accomplishing it in javascript is proving difficult, as soon
-        as I can get that accomplished I'll post it here.<br>
-        As for now I have linked the Java code in the following gitHub
-        link.<br>
-        <br>
-        As you can see it takes the agent&nbsp; quite a long time to
-        figure out how to traverse the course.&nbsp; But once it is
-        accomplished the agents neural network is in fact ready to be
-        run an an alternate course.<br>
-        The link below shows 2 java projects, the one labeled 'alternate
-        track' is solved immediately after loading the agent with the
-        pre-trained model.<br>
-        note: the reverse is not true.&nbsp; The alternate track is much
-        simpler than the original track, a trained model on the simpler
-        track will not immediately solve the original track, but it does
-        then solve it quicker.<br>
-        <br>
-        In a later project I learned that neural networks like this do
-        not like negative numbers in their inputs.&nbsp; I had to add 2
-        extra inputs, one to say the target is on the left, one to say
-        on the right, along with the distance inputs.<br>
-        I will try to add a similar approach here to see if the agent
-        can perform better.<br>
-        As you can see, the agent can complete the first right turns
-        relatively quickly, within 5 generations, but then can take
-        upward of 30-40 generations to make the next left turn.&nbsp;
-        Once it makes the first right turns, the network is heavily
-        biased to go right. <br>
-        Perhaps I can try giving the agent inputs as to the location of
-        the gates.&nbsp; The gates are what gives the agent points when
-        traversed.&nbsp; Currently the agent does not see the gates,
-        it's only inputs are the distances between the walls and the
-        agent.<br>
-        <b><font size="+2"><br>
-            The big takeaway here:<br>
-            <br>
-          </font></b>Pre-trained models are powerful.&nbsp; Once the
-        agent was trained on the hard course, it easily solved the
-        second, simpler, course with no added training needed.&nbsp; As
-        you can see, some of the agents even ran the secondary course
-        backwards with no difficulty at all.<br>
-        <font size="+2"></font><b><font size="+2"></font></b> <br>
-        code<br>
+        Here's what each agent's inputs are like:<br>
+        <div align="center"> <br>
+          <iframe
+            src="https://editor.p5js.org/djuliette/embed/zcBRXpL4Y"
+            width="400" height="400"></iframe><br>
+          <br>
+          The first goal is to solve the environment, to completely
+          circuit the track.<br>
+          The second goal is to save the weights of the neural network
+          and load them into an agent on another track and see how it
+          performs.<br>
+          <br>
+          video<br>
+          <br>
+          video 1 of agent completing track one<br>
+          <br>
+          video 2 of agent loading into new track and completing it
+          immediately<br>
+          <br>
+          <b><font size="+2"><br>
+              Analysis:</font></b><br>
+          <br>
+          I initially programmed this in Java using the Processing
+          library.&nbsp; I then made a Javascript version to be able to
+          be run in a browser.<br>
+          Saving/loading the neural network weights in java was simple,
+          but accomplishing it in javascript is proving difficult, as
+          soon as I can get that accomplished I'll post it here.<br>
+          As for now I have linked the Java code in the following gitHub
+          link.<br>
+          <br>
+          As you can see it takes the agent&nbsp; quite a long time to
+          figure out how to traverse the course.&nbsp; But once it is
+          accomplished the agents neural network is in fact ready to be
+          run an an alternate course.<br>
+          The link below shows 2 java projects, the one labeled
+          'alternate track' is solved immediately after loading the
+          agent with the pre-trained model.<br>
+          note: the reverse is not true.&nbsp; The alternate track is
+          much simpler than the original track, a trained model on the
+          simpler track will not immediately solve the original track,
+          but it does then solve it quicker.<br>
+          <br>
+          In a later project I learned that neural networks like this do
+          not like negative numbers in their inputs.&nbsp; I had to add
+          2 extra inputs, one to say the target is on the left, one to
+          say on the right, along with the distance inputs.<br>
+          I will try to add a similar approach here to see if the agent
+          can perform better.<br>
+          As you can see, the agent can complete the first right turns
+          relatively quickly, within 5 generations, but then can take
+          upward of 30-40 generations to make the next left turn.&nbsp;
+          Once it makes the first right turns, the network is heavily
+          biased to go right. <br>
+          Perhaps I can try giving the agent inputs as to the location
+          of the gates.&nbsp; The gates are what gives the agent points
+          when traversed.&nbsp; Currently the agent does not see the
+          gates, it's only inputs are the distances between the walls
+          and the agent.<br>
+          <b><font size="+2"><br>
+              The big takeaway here:<br>
+              <br>
+            </font></b>Pre-trained models are powerful.&nbsp; Once the
+          agent was trained on the hard course, it easily solved the
+          second, simpler, course with no added training needed.&nbsp;
+          As you can see, some of the agents even ran the secondary
+          course backwards with no difficulty at all.<br>
+          <br>
+          code<br>
+        </div>
       </div>
     </div>
   </body>
