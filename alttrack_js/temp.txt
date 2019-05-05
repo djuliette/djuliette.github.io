@@ -1,0 +1,18 @@
+var myObj = {
+    
+"weight_ih" : {
+    "rows" : popul.players[i].brain.weight_ih.rows,
+    "cols" : popul.players[i].brain.weight_ih.cols,
+    "data" : popul.players[i].brain.weight_ih.data
+},
+"weight_hh" : {
+	"rows" : popul.players[i].brain.weight_hh.rows,
+	"cols" : popul.players[i].brain.weight_hh.cols,
+	"data" : popul.players[i].brain.weight_hh.data
+},
+"weight_ho" : {
+	"rows" : popul.players[i].brain.weight_ho.rows,
+	"cols" : popul.players[i].brain.weight_ho.cols,
+	"data" : popul.players[i].brain.weight_ho.data
+}
+};
