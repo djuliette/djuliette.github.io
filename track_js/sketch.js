@@ -19,7 +19,7 @@ var down = false;
 var lines = [];
 var gates = [];
 //ArrayList<Boolean> player_gate_intersection_oneshot;
-var showSensors = true;
+var showSensors = false;
 var showPlayers = true;
 var track;
 var tempWeight_ih =[];
@@ -58,6 +58,7 @@ function setup() {
 
 function draw() {
     background(255);
+    translate(-popul.players[maxIndexAlive].position.x + 600,-popul.players[maxIndexAlive].position.y/2);
     // draw the track
     //for (var line in lines) {
     //    line.show();
@@ -95,10 +96,10 @@ function keyPressed(){
     // if(keyCode == RIGHT) {
     //     right = true;
     // }
-    if(key == ' ') {
+    if(key == '1') {
         showSensors = !showSensors;
     }
-    if(key == 'p') {
+    if(key == '2') {
         showPlayers = !showPlayers;
     }
     if(key == 's') {

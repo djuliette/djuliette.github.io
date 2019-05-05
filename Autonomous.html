@@ -42,6 +42,7 @@
         Here's what each agent's inputs are like:<br>
         <a href="https://editor.p5js.org/djuliette/present/zcBRXpL4Y"><i><b>(open
 
+
               in a new tab)</b></i></a><br>
         <div align="center"> <br>
           <iframe
@@ -53,6 +54,7 @@
           </div>
           <br>
           <div align="left"> &nbsp;&nbsp; &nbsp; <font size="+2"><b>a)</b></font>&nbsp;&nbsp;
+
 
             The first goal is to solve the environment, to completely
             circuit the track.<br>
@@ -66,16 +68,18 @@
               </font></b>
             <div align="left"><font size="+2"><font size="-2">&nbsp;&nbsp;&nbsp;
 
+
                   &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font
                     size="-1">Opens in new tab</font></font></font><br>
             </div>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
             <b><font size="+2"><a href="./track_js/index.html">Run
                   Demonstration</a></font></b><b><font size="+2"><br>
               </font></b><br>
-            So First if you hit the <b>Space Bar</b> it will stop
-            drawing all sensors so it can run faster.<br>
+            So First if you hit the <b><font size="+1">1</font> </b>key
+            it will stop drawing all sensors so it can run faster.<br>
             Now you can see the agents going around the track.<br>
             <br>
             If you are patient enough they will complete the track
@@ -102,43 +106,46 @@
           <b><font size="+2"><br>
               Analysis:</font></b><br>
           <br>
-          I initially programmed this in Java using the Processing
-          library.&nbsp; I then made a Javascript version to be able to
-          be run in a browser.<br>
-          Saving/loading the neural network weights in java was simple,
-          but accomplishing it in javascript is proving difficult, as
-          soon as I can get that accomplished I'll post it here.<br>
-          As for now I have linked the Java code in the following gitHub
-          link.<br>
+          <div align="left"> I initially programmed this in Java using
+            the Processing library.&nbsp; I then made a Javascript
+            version to be able to be run in a browser.<br>
+            Saving/loading the neural network weights in java was
+            simple, but accomplishing it in javascript is proving
+            difficult, as soon as I can get that accomplished I'll post
+            it here.<br>
+            As for now I have linked the Java code in the following
+            gitHub link.<br>
+          </div>
           <br>
-          As you can see it takes the agent&nbsp; quite a long time to
-          figure out how to traverse the course.&nbsp; But once it is
-          accomplished the agents neural network is in fact ready to be
-          run an an alternate course.<br>
-          The link below shows 2 java projects, the one labeled
-          'alternate track' is solved immediately after loading the
-          agent with the pre-trained model.<br>
-          note: the reverse is not true.&nbsp; The alternate track is
-          much simpler than the original track, a trained model on the
-          simpler track will not immediately solve the original track,
-          but it does then solve it quicker.<br>
-          <br>
-          In a later project I learned that neural networks like this do
-          not like negative numbers in their inputs.&nbsp; I had to add
-          2 extra inputs, one to say the target is on the left, one to
-          say on the right, along with the distance inputs.<br>
-          I will try to add a similar approach here to see if the agent
-          can perform better.<br>
-          As you can see, the agent can complete the first right turns
-          relatively quickly, within 5 generations, but then can take
-          upward of 30-40 generations to make the next left turn.&nbsp;
-          Once it makes the first right turns, the network is heavily
-          biased to go right. <br>
-          Perhaps I can try giving the agent inputs as to the location
-          of the gates.&nbsp; The gates are what gives the agent points
-          when traversed.&nbsp; Currently the agent does not see the
-          gates, it's only inputs are the distances between the walls
-          and the agent.<br>
+          <div align="left"> As you can see it takes the agent&nbsp;
+            quite a long time to figure out how to traverse the
+            course.&nbsp; But once it is accomplished the agents neural
+            network is in fact ready to be run an an alternate course.<br>
+            The link below shows 2 java projects, the one labeled
+            'alternate track' is solved immediately after loading the
+            agent with the pre-trained model.<br>
+            note: the reverse is not true.&nbsp; The alternate track is
+            much simpler than the original track, a trained model on the
+            simpler track will not immediately solve the original track,
+            but it does then solve it quicker.<br>
+            <br>
+            In a later project I learned that neural networks like this
+            do not like negative numbers in their inputs.&nbsp; I had to
+            add 2 extra inputs, one to say the target is on the left,
+            one to say on the right, along with the distance inputs.<br>
+            I will try to add a similar approach here to see if the
+            agent can perform better.<br>
+            As you can see, the agent can complete the first right turns
+            relatively quickly, within 5 generations, but then can take
+            upward of 30-40 generations to make the next left
+            turn.&nbsp; Once it makes the first right turns, the network
+            is heavily biased to go right. <br>
+            Perhaps I can try giving the agent inputs as to the location
+            of the gates.&nbsp; The gates are what gives the agent
+            points when traversed.&nbsp; Currently the agent does not
+            see the gates, it's only inputs are the distances between
+            the walls and the agent.<br>
+          </div>
           <b><font size="+2"><br>
               The big takeaway here:<br>
               <br>
