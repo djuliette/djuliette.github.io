@@ -21,6 +21,7 @@ var gates = [];
 //ArrayList<Boolean> player_gate_intersection_oneshot;
 var showSensors = false;
 var showPlayers = true;
+var trackCam = true;
 var track;
 var tempWeight_ih =[];
 var tempWeight_hh =[];
@@ -58,7 +59,9 @@ function setup() {
 
 function draw() {
     background(255);
-    translate(-popul.players[maxIndexAlive].position.x + 600,-popul.players[maxIndexAlive].position.y/2);
+    if(trackCam) {
+      translate(-popul.players[maxIndexAlive].position.x + 600,-popul.players[maxIndexAlive].position.y/2);
+    }
     // draw the track
     //for (var line in lines) {
     //    line.show();
@@ -108,8 +111,10 @@ function keyPressed(){
     if(key == 'l') {
         popul.loadPlayer();
     }
+    if(key == 'c') {
+        trackCam = !trackCam;
     }
-      
+}
 // function keyReleased() {
 //     if (keyCode == UP) {
 //         up = false;
