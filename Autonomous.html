@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <title>Autonomous</title>
   </head>
-  <body link="#0000EE" vlink="#551A8B" text="#000000" bgcolor="#ccccff"
+  <body link="#0000EE" vlink="#551A8B" text="#000000" bgcolor="#666666"
     alink="#EE0000">
     <script src="Track.js"></script>
     <script src="Population.js"></script>
@@ -18,92 +18,155 @@
     <script src="LineSeg.js"></script>
     <script src="Gates.js"></script>
     <script src="sketch.js"></script>
-    <div align="center"><font size="+3">Autonomous Vehicle Project <br>
-      </font>
+    <div align="center">
       <div align="left"><a href="http://djuliette.github.io">Back to
           main page</a><br>
+        <div align="left"><br>
+        </div>
+        <table width="1248" height="51" cellspacing="2" cellpadding="2"
+          bgcolor="#000000" border="1">
+          <tbody>
+            <tr>
+              <td valign="top">
+                <div align="center"><font color="#3333ff"><b><font
+                        size="+3"></font></b><b><font size="+3">&nbsp;&nbsp;&nbsp;
+                        &nbsp; Autonomous Vehicle Project</font></b></font><br>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <font color="#3333ff"><br>
+        </font>
+        <table width="100%" cellspacing="2" cellpadding="2"
+          bgcolor="#000000" border="1">
+          <tbody>
+            <tr>
+              <td valign="top"><font color="#3333ff"><a
+                    href="https://editor.p5js.org/djuliette/sketches/XYxrG2hmu">Link
+                    to original track</a><br>
+                </font></td>
+              <td valign="top"><font color="#3333ff"><a
+                    href="https://editor.p5js.org/djuliette/sketches/_qLu82KW5">link
+                    to alternate track</a><br>
+                </font></td>
+              <td valign="top"><br>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <br>
       </div>
       <font size="+3"> </font>
-      <div align="left"><b><font size="+3"><br>
-            I)&nbsp; Intro:</font></b><br>
-        <br>
-        OK, Autonomous Vehicle is a bit of a stretch, it's a rectangle
-        going around a track.&nbsp; But it has sensors, a bit of
-        inertia, and it does not know it's location at any point.&nbsp;
-        It's only inputs are how close the walls are around it.<br>
-        <br>
-        The idea here was to create an agent that could move it's way
-        around a track.&nbsp; It has no positional input, that would
-        lead to memory of the track and that isn't what I was looking
-        for.<br>
-        The inputs into the agent are raycasted 'sensors' that calculate
-        the distance from the agent to the nearest obstacle.&nbsp; There
-        are 8 sensors, 1 every 45 degrees around the agent.<br>
-        <br>
-        Here's what each agent's inputs are like:<br>
-        <a href="https://editor.p5js.org/djuliette/present/zcBRXpL4Y"><i><b>(open
+      <div align="left">
+        <table width="100%" cellspacing="2" cellpadding="2"
+          bgcolor="#c0c0c0" border="1">
+          <tbody>
+            <tr>
+              <td valign="top"><b><font size="+3">I)&nbsp; Intro:</font></b><br>
+                <br>
+                OK, Autonomous Vehicle is a bit of a stretch, it's a
+                rectangle going around a track.&nbsp; But it has
+                sensors, a bit of inertia, and it does not know it's
+                location at any point.&nbsp; It's only inputs are how
+                close the walls are around it.<br>
+                <br>
+                The idea here was to create an agent that could move
+                it's way around a track.&nbsp; It has no positional
+                input, that would lead to memory of the track and that
+                isn't what I was looking for.<br>
+                The inputs into the agent are raycasted 'sensors' that
+                calculate the distance from the agent to the nearest
+                obstacle.&nbsp; There are 8 sensors, 1 every 45 degrees
+                around the agent.<br>
+                <br>
+                Here's what each agent's inputs are like:<br>
+                <a
+                  href="https://editor.p5js.org/djuliette/present/zcBRXpL4Y"><i><b>(open
 
 
 
-              in a new tab)</b></i></a><br>
-        <div align="center"> <br>
-          <iframe
+
+                      in a new tab)</b></i></a><br>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <div align="center"> <iframe
             src="https://editor.p5js.org/djuliette/embed/zcBRXpL4Y"
             width="600" height="600"></iframe><br>
           <br>
-          <br>
-          <div align="left"><b><font size="+3">II) Model Training:</font></b><br>
-          </div>
-          <br>
-          <div align="left"> &nbsp;&nbsp; &nbsp; <font size="+2"><b>a)</b></font>&nbsp;&nbsp;
+          <table width="100%" cellspacing="2" cellpadding="2"
+            bgcolor="#c0c0c0" border="1">
+            <tbody>
+              <tr>
+                <td valign="top">
+                  <div align="left"><b><font size="+3">II) Model
+                        Training:</font></b><br>
+                  </div>
+                  <br>
+                  &nbsp;&nbsp; &nbsp; <font size="+2"><b>a)</b></font>&nbsp;&nbsp;
 
 
 
-            The first goal is to solve the environment, to completely
-            circuit the track.<br>
-            &nbsp;&nbsp;<b><font size="+2">&nbsp; b)&nbsp; </font></b>The
 
-            second goal is to save the weights of the neural network and
-            load them into an agent on another track and see how it
-            performs.<br>
-            <br>
-            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp; <b><font size="+2">Demonstration:<br>
-              </font></b>
-            <div align="left"><font size="+2"><font size="-2">&nbsp;&nbsp;&nbsp;
+                  The first goal is to solve the environment, to
+                  completely circuit the track.<br>
+                  &nbsp;&nbsp;<b><font size="+2">&nbsp; b)&nbsp; </font></b>The
 
 
-
+                  second goal is to save the weights of the neural
+                  network and load them into an agent on another track
+                  and see how it performs.<br>
+                  <br>
                   &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font
-                    size="-1">Opens in new tab</font></font></font><br>
-            </div>
-            &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp; <b><font size="+2"><a
-                  href="./track_js/index.html">Run Demonstration</a></font></b><b><font
-                size="+2"><br>
-                <br>
-                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <a
-                  href="alttrack_js/index.html">Run Alternate Track</a><br>
-              </font></b><br>
-            So First if you hit the <b><font size="+1">1</font> </b>key
+                  &nbsp;&nbsp;&nbsp;&nbsp; <b><font size="+2">Demonstration:<br>
+                    </font></b>
+                  <div align="left"><font size="+2"><font size="-2">&nbsp;&nbsp;&nbsp;
 
-            it will stop drawing all sensors so it can run faster.<br>
-            Now you can see the agents going around the track.<br>
-            <br>
-            If you are patient enough they will complete the track
-            usually <b>around 50 generations.&nbsp; </b>They can solve
-            the environment sooner if by random mutation they get lucky.<br>
-            Or they can even diverge leading to a never ending cycle.<br>
-            <br>
-            Or you can hit the <font size="+2"><u><i><b>l</b></i></u></font>
-            key which will load a pre-trained model and it will
-            instantly be able to solve the track.<br>
-            As soon as I have time I'll create a new track so the
-            pre-trained model can solve it as well with no additional
-            training.<br>
-            <br>
-          </div>
+
+
+
+                        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font size="-1">Opens
+                          in new tab</font></font></font><br>
+                  </div>
+                  &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp; <b><font size="+2"><a
+                        href="file:///D:/github/djuliette.github.io/track_js/index.html">Run
+                        Demonstration</a></font></b><b><font size="+2"><br>
+                      <br>
+                      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <a
+                        href="file:///D:/github/djuliette.github.io/alttrack_js/index.html">Run
+                        Alternate Track</a><br>
+                    </font></b><br>
+                  So First if you hit the <b><font size="+1">1</font> </b>key
+
+
+                  it will stop drawing all sensors so it can run faster.<br>
+                  Now you can see the agents going around the track.<br>
+                  <br>
+                  If you are patient enough they will complete the track
+                  usually <b>around 50 generations.&nbsp; </b>They can
+                  solve the environment sooner if by random mutation
+                  they get lucky.<br>
+                  Or they can even diverge leading to a never ending
+                  cycle.<br>
+                  <br>
+                  Or you can hit the <font size="+2"><u><i><b>l</b></i></u></font>
+                  key which will load a pre-trained model and it will
+                  instantly be able to solve the track.<br>
+                  As soon as I have time I'll create a new track so the
+                  pre-trained model can solve it as well with no
+                  additional training.<br>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
           <br>
           video<br>
           <br>
@@ -112,67 +175,89 @@
           video 2 of agent loading into new track and completing it
           immediately<br>
           <br>
+          <table width="100%" cellspacing="2" cellpadding="2"
+            bgcolor="#cccccc" border="1">
+            <tbody>
+              <tr>
+                <td valign="top">
+                  <div align="left"><b><font size="+2"> Analysis:</font></b><br>
+                  </div>
+                  <br>
+                  <div align="left"> I initially programmed this in Java
+                    using the Processing library.&nbsp; I then made a
+                    Javascript version to be able to be run in a
+                    browser.<br>
+                    Saving/loading the neural network weights in java
+                    was simple, but accomplishing it in javascript is
+                    proving difficult, as soon as I can get that
+                    accomplished I'll post it here.<br>
+                    As for now I have linked the Java code in the
+                    following gitHub link.<br>
+                  </div>
+                  <br>
+                  <div align="left"> As you can see it takes the
+                    agent&nbsp; quite a long time to figure out how to
+                    traverse the course.&nbsp; But once it is
+                    accomplished the agents neural network is in fact
+                    ready to be run an an alternate course.<br>
+                    The link below shows 2 java projects, the one
+                    labeled 'alternate track' is solved immediately
+                    after loading the agent with the pre-trained model.<br>
+                    note: the reverse is not true.&nbsp; The alternate
+                    track is much simpler than the original track, a
+                    trained model on the simpler track will not
+                    immediately solve the original track, but it does
+                    then solve it quicker.<br>
+                    <br>
+                    In a later project I learned that neural networks
+                    like this do not like negative numbers in their
+                    inputs.&nbsp; I had to add 2 extra inputs, one to
+                    say the target is on the left, one to say on the
+                    right, along with the distance inputs.<br>
+                    I will try to add a similar approach here to see if
+                    the agent can perform better.<br>
+                    As you can see, the agent can complete the first
+                    right turns relatively quickly, within 5
+                    generations, but then can take upward of 30-40
+                    generations to make the next left turn.&nbsp; Once
+                    it makes the first right turns, the network is
+                    heavily biased to go right. <br>
+                    Perhaps I can try giving the agent inputs as to the
+                    location of the gates.&nbsp; The gates are what
+                    gives the agent points when traversed.&nbsp;
+                    Currently the agent does not see the gates, it's
+                    only inputs are the distances between the walls and
+                    the agent.<br>
+                  </div>
+                  <b><font size="+2"><br>
+                    </font></b></td>
+              </tr>
+            </tbody>
+          </table>
           <b><font size="+2"><br>
+            </font></b><b><font size="+2"><br>
             </font></b>
-          <div align="left"><b><font size="+2"> Analysis:</font></b><br>
-          </div>
-          <br>
-          <div align="left"> I initially programmed this in Java using
-            the Processing library.&nbsp; I then made a Javascript
-            version to be able to be run in a browser.<br>
-            Saving/loading the neural network weights in java was
-            simple, but accomplishing it in javascript is proving
-            difficult, as soon as I can get that accomplished I'll post
-            it here.<br>
-            As for now I have linked the Java code in the following
-            gitHub link.<br>
-          </div>
-          <br>
-          <div align="left"> As you can see it takes the agent&nbsp;
-            quite a long time to figure out how to traverse the
-            course.&nbsp; But once it is accomplished the agents neural
-            network is in fact ready to be run an an alternate course.<br>
-            The link below shows 2 java projects, the one labeled
-            'alternate track' is solved immediately after loading the
-            agent with the pre-trained model.<br>
-            note: the reverse is not true.&nbsp; The alternate track is
-            much simpler than the original track, a trained model on the
-            simpler track will not immediately solve the original track,
-            but it does then solve it quicker.<br>
-            <br>
-            In a later project I learned that neural networks like this
-            do not like negative numbers in their inputs.&nbsp; I had to
-            add 2 extra inputs, one to say the target is on the left,
-            one to say on the right, along with the distance inputs.<br>
-            I will try to add a similar approach here to see if the
-            agent can perform better.<br>
-            As you can see, the agent can complete the first right turns
-            relatively quickly, within 5 generations, but then can take
-            upward of 30-40 generations to make the next left
-            turn.&nbsp; Once it makes the first right turns, the network
-            is heavily biased to go right. <br>
-            Perhaps I can try giving the agent inputs as to the location
-            of the gates.&nbsp; The gates are what gives the agent
-            points when traversed.&nbsp; Currently the agent does not
-            see the gates, it's only inputs are the distances between
-            the walls and the agent.<br>
-          </div>
+          <table width="100%" cellspacing="2" cellpadding="2"
+            bgcolor="#ffffff" border="1">
+            <tbody>
+              <tr>
+                <td valign="top">
+                  <div align="left"><b><font size="+2"> The big takeaway
+                        here:</font></b><br>
+                  </div>
+                  <b><font size="+2"> <br>
+                    </font></b> <b><font size="+2"> </font></b>Pre-trained
+
+                  models are powerful.&nbsp; Once the agent was trained
+                  on the hard course, it easily solved the second,
+                  simpler, course with no added training needed.&nbsp;
+                  As you can see, some of the agents even ran the
+                  secondary course backwards with no difficulty at all.</td>
+              </tr>
+            </tbody>
+          </table>
           <b><font size="+2"><br>
-            </font></b>
-          <div align="left"><b><font size="+2"> The big takeaway here:</font></b><br>
-          </div>
-          <b><font size="+2"> <br>
-            </font></b>
-          <div align="left"><b><font size="+2"> </font></b>Pre-trained
-            models are powerful.&nbsp; Once the agent was trained on the
-            hard course, it easily solved the second, simpler, course
-            with no added training needed.&nbsp; As you can see, some of
-            the agents even ran the secondary course backwards with no
-            difficulty at all.<br>
-          </div>
-          <br>
-          <div align="left"> code<br>
-          </div>
+            </font></b><br>
         </div>
       </div>
     </div>
