@@ -7,6 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.sound.min.js"></script>
     <meta charset="utf-8">
     <title></title>
+    <!-- <script language="javascript" type="text/javascript" src="sketch.js"></script> -->
   </head>
   <body link="#0000EE" vlink="#551A8B" text="#000000" bgcolor="#666666"
     alink="#EE0000">
@@ -22,6 +23,7 @@
               sensors so it can run faster.<br>
               You can also press the <b><font size="+2">c </font></b>key
 
+
               to stop/start the camera tracking so you can explore the
               track.<br>
               Now you can see the agents going around the track.<br>
@@ -35,6 +37,7 @@
               &nbsp;&nbsp; *&nbsp; Or you can hit the <font size="+3"><u><i><b>l&nbsp;</b></i></u></font>
               <b><font size="+1">key </font></b><i><font size="-1">(lower
 
+
                   case l)</font></i><font size="+1"> </font><b><font
                   size="+1">which will load a</font></b> <font
                 size="+2"><b>pre-trained model</b></font> and it will
@@ -47,19 +50,6 @@
     </table>
     <br>
     <br>
-    <br>
-    <script src="Track.js"></script>
-    <script src="Population.js"></script>
-    <script src="Player.js"></script>
-    <script src="nn.js"></script>
-    <script src="matrix.js"></script>
-    <script src="LineSeg.js"></script>
-    <script src="Gates.js"></script>
-    <script src="sketch.js"></script>
-    <div id="main">
-      <h2> Autonomous Vehicle Original Track </h2>
-      <div id="canvas"> </div>
-    </div>
     <script>
     //center the canvas
     var tempString = ""+((window.innerWidth*0.9- 1026 - window.innerWidth*0.9*0.08 )/2)+ "px";
@@ -71,6 +61,14 @@
       document.getElementById("main").style.marginLeft = tempString;
     };
 
-  </script>
+  </script> <br>
+    <script src="Track.js"></script>
+    <script src="Population.js"></script>
+    <script src="Player.js"></script>
+    <script src="nn.js"></script>
+    <script src="matrix.js"></script>
+    <script src="LineSeg.js"></script>
+    <script src="Gates.js"></script>
+    <script src="sketch.js"></script>
   </body>
 </html>
