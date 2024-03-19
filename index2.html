@@ -1,188 +1,267 @@
-p5.disableFriendlyErrors = true; // disables FES
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;
+      charset=windows-1252">
+    <title></title>
+  </head>
+  <body link="#0000EE" vlink="#551A8B" text="#000000" bgcolor="#c0c0c0"
+    alink="#EE0000">
+    <table width="100%" cellspacing="2" cellpadding="2"
+      bgcolor="#000000" border="1">
+      <tbody>
+        <tr>
+          <td valign="top">
+            <h1 align="center"><font face="Courier New" color="#3366ff">AI,
 
-//  ---------------- toto
-//  reduce number of for loops. combine some stuff
+                Reinforcement Learning, Machine Learning...</font></h1>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h1 align="center"><br>
+    </h1>
+    <table width="100%" cellspacing="2" cellpadding="2"
+      bgcolor="#333333" border="1">
+      <tbody>
+        <tr>
+          <td valign="top">
+            <p><font face="Courier New" color="#3366ff" size="+1">1)&nbsp;
 
-let single = false;
-//var popul;
-let player;
-let population;
-let moveU = false;
-let MoveD = false;
-let MoveR = false;
-let MoveL = false;
-var lines = [];
-var gates = [];
+                Here are some of my projects that I've made while
+                teaching myself Machine Learning.&nbsp; These are the
+                projects that at least have some <b>visual component</b>,
+                mostly games with some form of Neuro-Evolution.&nbsp;</font></p>
+            <font face="Courier New" color="#3366ff" size="+1">2)&nbsp;
+              I will link to another page for my non-visual projects, <b>transfer
+
+                learning of pre-trained models, creating and using
+                Convolutional Neural Networks, and Deep Reinforcement
+                Learning.</b></font></td>
+        </tr>
+      </tbody>
+    </table>
+    <p><font size="+1"><br>
+      </font></p>
+    <table width="100%" cellspacing="2" cellpadding="2" border="1">
+      <tbody>
+        <tr>
+          <td valign="top">
+            <p><font face="Times New Roman, Times, serif" size="+1"><b><font
+                    size="+2">Neuro-Evolutionary Models:</font><br>
+                </b></font></p>
+            <ul>
+              <li><font face="Times New Roman, Times, serif">In each
+                  project's page I've put some description and links to
+                  the code on the P5JS's web editor.&nbsp; I've made
+                  several variants of each project.&nbsp; Most were
+                  originally written in Java or Python, but I made
+                  Javascript versions so they could be accessible in a
+                  browser.<br>
+                </font> </li>
+            </ul>
+            <ul>
+              <li><font face="Times New Roman, Times, serif">Also for
+                  each project I usually have 3 versions,:</font></li>
+              <ul>
+                <li><font face="Times New Roman, Times, serif">One with
+                    my own vanilla code to create and train the Neural
+                    Networks, <br>
+                  </font></li>
+                <li><font face="Times New Roman, Times, serif">One using
+                    Tensors but not creating a model (i.e. using the
+                    tensor's linear algebra functions to calculate the
+                    weights and outputs)</font></li>
+                <li><font face="Times New Roman, Times, serif">And
+                    lastly one using the Layers API to create a full
+                    TensorFlow model.</font></li>
+              </ul>
+            </ul>
+            <ul>
+              <li><font face="Times New Roman, Times, serif">SPOILER:&nbsp;
+
+                  the TensorFlow Models actually performed the
+                  worst.&nbsp; That's just because the model has so much
+                  functionality built into it, that isn't useful in
+                  these simple cases, and it slows the program to a
+                  crawl.<br>
+                </font> </li>
+            </ul>
+            <ul>
+              <li><font face="Times New Roman, Times, serif"> Two huge
+                  influences are Code Bullet and of course Coding
+                  Train.&nbsp; Many of these projects inspiration came
+                  from Code Bullet's videos.&nbsp; I used them for
+                  inspiration and reference only. I have not simply
+                  copied his code.&nbsp; Simply copying code would have
+                  not taught me a thing or have been any fun.&nbsp; The
+                  only code I directly copied was Coding Train's Matrix
+                  class.&nbsp; The Matrix class creates a matrix object
+                  and has several very useful Linear Algebra methods.</font></li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p><font size="+1"><br>
+      </font> </p>
+    <br>
+    <p><br>
+    </p>
+    <table width="100%" cellspacing="1" cellpadding="1"
+      bgcolor="#666666" border="1">
+      <tbody>
+        <tr>
+          <td valign="top" align="center"><b><font size="+3">Autonomous
+                Vehicle <br>
+                Neuro-Evolution<br>
+              </font></b><img src="track_animated.gif" alt="track"
+              width="300" height="225"><br>
+            <br>
+            <font size="+1">Project Page: <a href="Autonomous.html">Autonomous
 
 
-var showPlayers = true;
-var showSensors = true;
-var track;
 
-//ga variables
-var init_pop_size = 500;
-var lowest_alive = 0;
-var allTimeHigh = 0;
-
-var globalMutationRate = 0.085;
-
-var maxf = 0;
-var maxIndex = 0;
-var max_alive = 0;
-var maxIndexAlive = 0;
-var numAlive = 0;
+                Vehicle</a><br>
+              &nbsp;link to run/view code: <a
+                href="https://editor.p5js.org/djuliette/sketches/XYxrG2hmu">Car
 
 
-var numInputNodes = 10;
-var numOutputNodes = 4;
 
-let numHLayers = 3;
-let numHidden1Nodes = 40;
-let numHidden2Nodes = 10;     ;
-let numHidden3Nodes = 4;
-let numHidden4Nodes = 0;
-let numHidden5Nodes = 0;
-let numHidden6Nodes = 0;        
-let numHidden7Nodes = 0;
-let numHidden8Nodes = 0;
-let numHidden9Nodes = 0;
-let numHidden10Nodes = 0;
 
-var dimx = 2100;
-var dimy = 1500;
 
-function setup() {
-    createCanvas(2200, 1650);
-    frameRate(99999999);
-    if(single) {
-        player = new Player(1650,1440);
-    } else {
-        population = new Population(init_pop_size);
-    }
-    
-    track = new Track();
-} //setup
+                Track NE javascript</a></font></td>
+          <td valign="top" align="center"><font size="+3"><b>3D Flappy
+                Bird</b><b><br>
+              </b><b>TensorFlow Neuro-Evolution</b><br>
+              <img src="flappy3d3.gif" alt="flappy 3d" width="313"
+                height="274"><br>
+            </font><font size="+1">Project Page: <a
+                href="flappy_3d.html">3D Flappy Bird with TensorFlow JS</a></font><br>
+            <font size="+1">&nbsp;link to run/viewcode: <a
+                href="https://editor.p5js.org/djuliette/sketches/aGEe50IFd">3D
 
-function draw() {
-    background(255);
-    // draw the track
-    //for (var line in lines) {
-    //    line.show();
-    //}
-    for(let l = 0; l <= lines.length - 1;l++) {
-        lines[l].show();
-    }
-    // draw the gates
-    // for (var gate in gates) {
-    //     gate.show();
-    // }
-    for(let g = 0; g <= gates.length - 1; g++) {
-        gates[g].show();
-    }
-    if(single) {
-        player.update();
-        player.move();
-        player.show();
-        player.look();
-    }
-    if(!single) {
-        if(!population.done()) { 
-            population.updateAlive();
-        } else {
-        population.calculateFitness();
-        population.naturalSelection();
-        }
-    }
 
-    showInfo();
-} // draw
 
-function keyPressed(){
-     if(keyCode == UP_ARROW) {
-         player.moveU = true;
-     }
-     if(keyCode == DOWN_ARROW) {
-        player.moveD = true;
-     }
-     if(keyCode == LEFT_ARROW) {
-        player.moveL = true;
-     }
-     if(keyCode == RIGHT_ARROW) {
-        player.moveR = true;
-     }
-    if(key == ' ') {
-        showSensors = !showSensors;
-    }
-    if(key == 'p') {
-        showPlayers = !showPlayers;
-    }
-    if(key == 's') {
-        population.players[maxIndexAlive].savePlayer();
-    }
-    if(key == 'l') {
-        popul.loadPlayer();
-    }
-    if(key == 'k') {
-        population.killAll();
-    }
-}
-      
- function keyReleased() {
-     if (keyCode == UP_ARROW) {
-         player.moveU = false;
-     }
-     if (keyCode == DOWN_ARROW) {
-         player.moveD = false;
-     }
-     if (keyCode == RIGHT_ARROW) {
-         player.moveR = false;
-     }
-     if (keyCode == LEFT_ARROW) {
-         player.moveL = false;
-     }
- } // keyreleased
-      
-      
-function showInfo() {
-    fill(200);
-    textAlign(LEFT);
-    textSize(34);
-    //text("score: " + max_alive,30,height - 100);
-    //text("live index: " + maxIndexAlive,30,height - 125);
-    if(!single) {
-        //text("Position: " + population.players[lowest_alive].position.x + " : " + population.players[lowest_alive].position.y,30,height-25);
-        text("Gen: " + population.gen, 30, 60);
-        text("Left Alive: " + numAlive, 30, 90);
-        text("Score: " + population.players[maxIndexAlive].score,30,120);
-        text("FTimer: " + population.players[maxIndexAlive].frameTimer,30,150);
-        text("vision0: " + population.players[maxIndexAlive].vision[0],30,180);
-        text("vision1: " + population.players[maxIndexAlive].vision[1],30,210);
-        text("vision2: " + population.players[maxIndexAlive].vision[2],30,240);
-        text("vision3: " + population.players[maxIndexAlive].vision[3],30,270);
-        text("vision4: " + population.players[maxIndexAlive].vision[4],30,300);
-        text("vision5: " + population.players[maxIndexAlive].vision[5],30,330);
-        text("vision6: " + population.players[maxIndexAlive].vision[6],30,360);
-        text("vision7: " + population.players[maxIndexAlive].vision[7],30,390);
-        text("angle: " + population.players[maxIndexAlive].vision[8],30,420);
-        text("vel: " + population.players[maxIndexAlive].vision[9],30,460);
-    }
-    if(single) {
-        text("angle: " + player.angle, 30,40);
-        text("Timer: " + player.frameTimer, 30,60);
-        text("score: " + player.score, 30, 90);
-        text("vision0: " + player.vision[0],30,120);
-        text("vision1: " + player.vision[1],30,150);
-        text("vision2: " + player.vision[2],30,180);
-        text("vision3: " + player.vision[3],30,210);
-        text("vision4: " + player.vision[4],30,240);
-        text("vision5: " + player.vision[5],30,270);
-        text("vision6: " + player.vision[6],30,300);
-        text("vision7: " + player.vision[7],30,330);
-        text("vision8: " + player.vision[8],30,360);
-        text("px: " + player.position.x, 30, 390);
-        text("py: " + player.position.y, 30, 420);
-        text("Dist: " + p5.Vector.dist(player.position,createVector(mouseX,mouseY)),30, 450);
-        text("mx: " + mouseX,30,480);
-        text("my: " + mouseY,30,510);
-    }
-} // showInfo
+                Flappy Bird javascript<br>
+              </a></font></td>
+        </tr>
+        <tr>
+          <td valign="top" align="center">
+            <div align="center"><b><font size="+3"><font size="+1"><font
+                      size="+3">Flappy Bird</font><br>
+                  </font></font></b><b><font size="+2">Neuro-Evolution<br>
+                  <font size="+1">Difficulty Level:&nbsp; lots of fun*</font></font><font
+                  size="+3"><font size="+1"><br>
+                    <img src="flappy.gif" alt="flappy" width="284"
+                      height="284"><br>
+                  </font></font></b></div>
+            <font size="+1">Project Page: Flappy Bird NE<br>
+              link to run/viewcode: <a
+                href="https://editor.p5js.org/djuliette/sketches/Tfvcx2jys">Flappy
+
+
+
+                Bird Javascript</a><br>
+              <br>
+            </font></td>
+          <td valign="top" align="center"><b><font size="+3">Google's
+                Dino Run <br>
+                &nbsp;Neuro-Evolution<br>
+              </font></b><img src="dino.gif" alt="dino" width="300"
+              height="210"><br>
+            <br>
+            <font size="+1">Project Page: Dino Run<br>
+              &nbsp;link to run/viewcode:&nbsp; <a
+                href="https://editor.p5js.org/djuliette/sketches/cw4ot9rut">Dino
+
+
+
+
+
+                NE javascript</a></font></td>
+        </tr>
+        <tr>
+          <td valign="top">
+            <div align="center"><b><font size="+3">Dots<br>
+                  <font size="+1">Plain Genetic Algorithm and
+                    Neuro-Evolution<br>
+                  </font></font></b></div>
+            <div align="center"><img src="dots.gif" alt="dots"
+                width="271" height="271"><br>
+              <br>
+            </div>
+            <div align="center"> Project Page: Dots GA/NE<br>
+              link to run/view code: <a
+                href="https://editor.p5js.org/djuliette/sketches/ZCkGrFLl_">Dots
+
+
+
+
+
+                GA javascript</a></div>
+          </td>
+          <td valign="top" align="center"><font size="+3"><b>Snake Game</b><b><br>
+              </b><b>Neuro</b><b>-Evolution</b><br>
+              <img src="snake5.gif" alt="snake" width="284" height="281"><br>
+            </font>Project Page: Snake Game NE<br>
+            link to run/view&nbsp; code: <a
+              href="https://editor.p5js.org/djuliette/sketches/euP2eHjaw">Snake
+
+
+
+
+              Game Javascript</a><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" align="center"><b><font size="+3">Worlds
+                Hardest Game<br>
+              </font>difficulty level: banged this out in a few hours*<br>
+              <font size="+3"> </font></b><img src="whg.gif" alt="whg"
+              width="400" height="160"><br>
+            Project Page: WHG<br>
+            link to run/view code: <a
+              href="https://editor.p5js.org/djuliette/present/DcqJIglnj">WHG
+
+
+
+
+              NE Javascript</a><br>
+          </td>
+          <td valign="top" align="center">Rubix Cube:<br>
+            Coding Train uploaded a Processing program of a Rubix Cube.<br>
+            I want to try to use a genetic algorithm to solve it. <br>
+            So far I've got a population of independent cubes,<br>
+            now I have to make sure every generation starts at the same<br>
+            initial scramble, create a fitness function, and some sort
+            of<br>
+            crossover function.<br>
+            <img src="cube.gif" alt="cube" width="300" height="285"></td>
+        </tr>
+        <tr>
+          <td valign="top" align="center"><b><font size="+3">Matter.js<br>
+              </font></b>I started working on a walking simulation, but
+            ran into<br>
+            issues with matter.js.&nbsp; I hope to come back to it
+            someday<br>
+            <br>
+            <img src="matter.gif" alt="matter" width="300" height="226"><br>
+            Project Page: Matter.js<br>
+            link to run/view code: <a
+              href="https://editor.p5js.org/djuliette/sketches/pZ9OxjbXR">Matter.js
+
+
+
+
+              Javascript</a><br>
+            <b><font size="+3"></font></b></td>
+          <td valign="top" align="center"><br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p><br>
+    </p>
+  </body>
+</html>
