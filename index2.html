@@ -1,0 +1,188 @@
+p5.disableFriendlyErrors = true; // disables FES
+
+//  ---------------- toto
+//  reduce number of for loops. combine some stuff
+
+let single = false;
+//var popul;
+let player;
+let population;
+let moveU = false;
+let MoveD = false;
+let MoveR = false;
+let MoveL = false;
+var lines = [];
+var gates = [];
+
+
+var showPlayers = true;
+var showSensors = true;
+var track;
+
+//ga variables
+var init_pop_size = 500;
+var lowest_alive = 0;
+var allTimeHigh = 0;
+
+var globalMutationRate = 0.085;
+
+var maxf = 0;
+var maxIndex = 0;
+var max_alive = 0;
+var maxIndexAlive = 0;
+var numAlive = 0;
+
+
+var numInputNodes = 10;
+var numOutputNodes = 4;
+
+let numHLayers = 3;
+let numHidden1Nodes = 40;
+let numHidden2Nodes = 10;     ;
+let numHidden3Nodes = 4;
+let numHidden4Nodes = 0;
+let numHidden5Nodes = 0;
+let numHidden6Nodes = 0;        
+let numHidden7Nodes = 0;
+let numHidden8Nodes = 0;
+let numHidden9Nodes = 0;
+let numHidden10Nodes = 0;
+
+var dimx = 2100;
+var dimy = 1500;
+
+function setup() {
+    createCanvas(2200, 1650);
+    frameRate(99999999);
+    if(single) {
+        player = new Player(1650,1440);
+    } else {
+        population = new Population(init_pop_size);
+    }
+    
+    track = new Track();
+} //setup
+
+function draw() {
+    background(255);
+    // draw the track
+    //for (var line in lines) {
+    //    line.show();
+    //}
+    for(let l = 0; l <= lines.length - 1;l++) {
+        lines[l].show();
+    }
+    // draw the gates
+    // for (var gate in gates) {
+    //     gate.show();
+    // }
+    for(let g = 0; g <= gates.length - 1; g++) {
+        gates[g].show();
+    }
+    if(single) {
+        player.update();
+        player.move();
+        player.show();
+        player.look();
+    }
+    if(!single) {
+        if(!population.done()) { 
+            population.updateAlive();
+        } else {
+        population.calculateFitness();
+        population.naturalSelection();
+        }
+    }
+
+    showInfo();
+} // draw
+
+function keyPressed(){
+     if(keyCode == UP_ARROW) {
+         player.moveU = true;
+     }
+     if(keyCode == DOWN_ARROW) {
+        player.moveD = true;
+     }
+     if(keyCode == LEFT_ARROW) {
+        player.moveL = true;
+     }
+     if(keyCode == RIGHT_ARROW) {
+        player.moveR = true;
+     }
+    if(key == ' ') {
+        showSensors = !showSensors;
+    }
+    if(key == 'p') {
+        showPlayers = !showPlayers;
+    }
+    if(key == 's') {
+        population.players[maxIndexAlive].savePlayer();
+    }
+    if(key == 'l') {
+        popul.loadPlayer();
+    }
+    if(key == 'k') {
+        population.killAll();
+    }
+}
+      
+ function keyReleased() {
+     if (keyCode == UP_ARROW) {
+         player.moveU = false;
+     }
+     if (keyCode == DOWN_ARROW) {
+         player.moveD = false;
+     }
+     if (keyCode == RIGHT_ARROW) {
+         player.moveR = false;
+     }
+     if (keyCode == LEFT_ARROW) {
+         player.moveL = false;
+     }
+ } // keyreleased
+      
+      
+function showInfo() {
+    fill(200);
+    textAlign(LEFT);
+    textSize(34);
+    //text("score: " + max_alive,30,height - 100);
+    //text("live index: " + maxIndexAlive,30,height - 125);
+    if(!single) {
+        //text("Position: " + population.players[lowest_alive].position.x + " : " + population.players[lowest_alive].position.y,30,height-25);
+        text("Gen: " + population.gen, 30, 60);
+        text("Left Alive: " + numAlive, 30, 90);
+        text("Score: " + population.players[maxIndexAlive].score,30,120);
+        text("FTimer: " + population.players[maxIndexAlive].frameTimer,30,150);
+        text("vision0: " + population.players[maxIndexAlive].vision[0],30,180);
+        text("vision1: " + population.players[maxIndexAlive].vision[1],30,210);
+        text("vision2: " + population.players[maxIndexAlive].vision[2],30,240);
+        text("vision3: " + population.players[maxIndexAlive].vision[3],30,270);
+        text("vision4: " + population.players[maxIndexAlive].vision[4],30,300);
+        text("vision5: " + population.players[maxIndexAlive].vision[5],30,330);
+        text("vision6: " + population.players[maxIndexAlive].vision[6],30,360);
+        text("vision7: " + population.players[maxIndexAlive].vision[7],30,390);
+        text("angle: " + population.players[maxIndexAlive].vision[8],30,420);
+        text("vel: " + population.players[maxIndexAlive].vision[9],30,460);
+    }
+    if(single) {
+        text("angle: " + player.angle, 30,40);
+        text("Timer: " + player.frameTimer, 30,60);
+        text("score: " + player.score, 30, 90);
+        text("vision0: " + player.vision[0],30,120);
+        text("vision1: " + player.vision[1],30,150);
+        text("vision2: " + player.vision[2],30,180);
+        text("vision3: " + player.vision[3],30,210);
+        text("vision4: " + player.vision[4],30,240);
+        text("vision5: " + player.vision[5],30,270);
+        text("vision6: " + player.vision[6],30,300);
+        text("vision7: " + player.vision[7],30,330);
+        text("vision8: " + player.vision[8],30,360);
+        text("px: " + player.position.x, 30, 390);
+        text("py: " + player.position.y, 30, 420);
+        text("Dist: " + p5.Vector.dist(player.position,createVector(mouseX,mouseY)),30, 450);
+        text("mx: " + mouseX,30,480);
+        text("my: " + mouseY,30,510);
+    }
+} // showInfo
